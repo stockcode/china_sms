@@ -51,6 +51,9 @@ ChinaSMS.use :yunpian, password: 'YOUR_API_KEY'
 ChinaSMS.to '13912345678', '[Test]China SMS gem has been released.'
 ChinaSMS.to '13912345678', 'China SMS gem has been released.【Test】'    # luosimao 的签名要放在后面
 
+# 云片语音接口
+ChinaSMS.voice '13912345678', '1123' #通过电话直呼到用户手机并语音播放验证码，默认最多播放2次。如：您的验证码是1123
+
 # 模板接口
 # 模板是 "您的验证码是#code#【#company#】”
 tpl_params = { code: 123, company: '19wu' }
