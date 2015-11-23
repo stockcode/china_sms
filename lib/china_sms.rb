@@ -17,6 +17,11 @@ module ChinaSMS
     @password = options[:password]
   end
 
+  def voice(receiver, content, options = {})
+    options = default_options.merge options
+    @service.voice receiver, content, options if @service
+  end
+
   def to(receiver, content, options = {})
     options = default_options.merge options
     @service.to receiver, content, options if @service

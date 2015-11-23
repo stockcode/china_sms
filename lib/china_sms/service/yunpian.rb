@@ -7,6 +7,18 @@ module ChinaSMS
       GET_URL      = "http://yunpian.com/v1/user/get.json"
       SEND_URL     = 'http://yunpian.com/v1/sms/send.json'
       TPL_SEND_URL = 'http://yunpian.com/v1/sms/tpl_send.json'
+      VOICE_URL    = 'http://voice.yunpian.com/v1/voice/send.json'
+
+      def voice phone, content, options = {}
+        options[:apikey] ||= options[:password]
+        except! options, :username, :password
+
+        options.merge!({ mobile: phone, code: content })
+
+        res = Net::HTTP.post_form(URI.parse(VOICE_URL), options)
+
+        result res.body
+      end
 
       def to phone, content, options = {}
         options[:tpl_id] ||= 2
